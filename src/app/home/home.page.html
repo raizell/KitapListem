@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Hoşgeldiniz</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding" scroll-y="false" color="warning">
+  <span *ngIf="myValue; else yardim">
+  <ion-slides #slides pager="true" [options]="slideOpts" (ionSlideDidChange)="mySliderChange($event)">
+    <ion-slide>
+      <div class="slide">
+        <img src="../../assets/img/logo.png"/>
+        <h2>Merhabalar</h2>
+        <p>Kitap Listem'e hoşgeldiniz.Amacımız her tür kitap severin okudukları kitapların kayıtlarını tutup nerede kaldıklarını ve neler okuduklarını unutmamalarını sağlamaktır.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <h2>Hesabınız var ise giriş yapabilirsiniz</h2>
+      <ion-list color="primary" expand="block">
+      
+        <ion-item >
+          <ion-label position="floating">Kullanıcı Adı</ion-label>
+          <ion-input type="text" [(ngModel)]="userData.username"></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-label position="floating">Şifre</ion-label>
+          <ion-input type="password" [(ngModel)]="userData.password"></ion-input>
+        </ion-item>
+        <ion-item >
+          <ion-button [disabled]="userData.username == '' || userData.password == '' " color="success" expand="block" (click)="giris()">Giriş Yap</ion-button>
+        </ion-item>
+      
+      </ion-list>
+      
+      <h2>Eğer yoksa kaydırınız.</h2>
+    </ion-slide>
+
+
+    <ion-slide>
+      <h2>Başlamak için tıklayınız</h2>
+      <ion-button fill="fill" [routerLink]="['/kayit']" routerLinkActive="router-link-active" >Kayıt ol <ion-icon slot="end" color="danger" name="arrow-forward"></ion-icon></ion-button>
+    </ion-slide>
+  </ion-slides>
+</span>
+
+<ng-template #yardim>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Kullanıcı Adı</ion-label>
+      <ion-input type="text" [(ngModel)]="userData.username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Şifre</ion-label>
+      <ion-input type="password" [(ngModel)]="userData.password"></ion-input>
+      </ion-item>
+    
+      <ion-button [disabled]="userData.username == '' || userData.password == '' " color="success" expand="full" (click)="giris()">Giriş Yap</ion-button>
+      <ion-button fill = "clear" [routerLink]="['/kayit']" >Kayıt Ol</ion-button>
+      </ion-list>
+</ng-template>
+
+</ion-content>
